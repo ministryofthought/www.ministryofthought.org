@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="kicker smallcaps">Browse</div>
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="lead">{{ . }}</div>{{ end }}
+</section>
+<section class="panel">
+  <ul class="topic-columns list-clean">
+    {{ range .Data.Terms.Alphabetical }}
+      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> <span class="meta">({{ .Count }})</span></li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

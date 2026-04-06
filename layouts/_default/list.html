@@ -1,21 +1,17 @@
 {{ define "main" }}
-<section class="container page-header">
-  <p class="eyebrow">Section</p>
-  <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
-</section>
-
-<section class="container listing">
-  {{ range .Paginator.Pages }}
-    <article class="card">
-      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-      {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
-      <p><a href="{{ .RelPermalink }}">Read more</a></p>
-    </article>
-  {{ else }}
-    <p>No content found.</p>
-  {{ end }}
-
-  {{ template "_internal/pagination.html" . }}
-</section>
+  <section class="hero">
+    <div class="kicker smallcaps">{{ .Section | humanize }}</div>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="lead">{{ . }}</div>{{ end }}
+  </section>
+  <section class="panel">
+    <div class="content-list">
+      {{ range .Pages.ByDate.Reverse }}
+        <article>
+          <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+          {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
 {{ end }}

@@ -1,6 +1,10 @@
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <p>© {{ now.Format "2006" }} {{ site.Title }}</p>
-    <p>Built with Hugo.</p>
-  </div>
+<footer class="footer">
+  <div>Ministry of Thought · A structured companion to the videos.</div>
 </footer>
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  }
+</script>

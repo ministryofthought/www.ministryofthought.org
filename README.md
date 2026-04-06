@@ -1,119 +1,40 @@
-# Ministry of Thought — Hugo starter repository
+# Ministry of Thought Hugo starter
 
-A lightweight Hugo starter repository for an offline-first writing workflow with deployment to Azure Static Web Apps.
+This is a custom Hugo starter site implementing the wireframe direction discussed in chat:
 
-## What this starter includes
-
-- Hugo site with no external theme dependency
-- Content types for `articles`, `talks`, and standalone `pages`
-- Basic tags and series taxonomies
-- Simple responsive layout and typography
-- Azure Static Web Apps workflow that builds Hugo and uploads the generated `public/` folder
-- Portable structure that can later move to Cloudflare Pages with minimal changes
-
-## Working style
-
-Suggested workflow:
-
-- Draft and think in Obsidian or your preferred Markdown notes tool
-- Move or copy publishable content into this repository
-- Use VS Code for front matter, templates, Git, and local preview
-
-## Local prerequisites
-
-Install Hugo Extended:
-
-- Windows: use `winget install Hugo.Hugo.Extended`
-- macOS: use `brew install hugo`
-- Other platforms: see Hugo installation docs
+- compact, content-first layout
+- video support pages as the primary content type
+- topic pages for conceptual browsing
+- series pages for curated pathways
+- recent videos page
+- dual search model: concept/topic search on-site and Google full-text search
 
 ## Run locally
 
 ```bash
-hugo server -D
+hugo server
 ```
 
-Open the local address printed by Hugo.
+## Key sections
 
-## Build locally
+- `content/videos/` — video support pages
+- `content/topics/` — taxonomy landing page
+- `content/series/` — taxonomy landing page
+- `content/search/` — search page
+- `content/about/` — about page
+- `content/recent/` — chronological browse page
 
-```bash
-hugo
-```
+## Current sample data
 
-Generated site output will be written to `public/`.
+The sample pages use Woodside Church videos as placeholder embeds, so the layout can be tested with real YouTube content while the information architecture is still being refined.
 
-## Azure Static Web Apps
+## Notes
 
-This repo includes a GitHub Actions workflow that:
+- The visual style is intentionally restrained.
+- The burger menu appears on narrow screens.
+- The search page includes a small client-side topic search built from Hugo taxonomies.
+- The full-text search button sends the user to Google with a `site:ministryofthought.org` query.
 
-- installs Hugo Extended
-- builds the site
-- uploads the generated `public/` directory to Azure Static Web Apps
+## Next likely step
 
-This means you can keep your existing Azure Static Web App and custom DNS. The main change is that Azure must now deploy the built output rather than serving the repository root directly.
-
-## Key folders
-
-```text
-.github/workflows/   Deployment workflow
-archetypes/          New-content templates
-assets/css/          Site styles
-content/             Markdown content
-layouts/             Hugo templates and partials
-static/              Files copied as-is to the built site
-```
-
-## Adding content
-
-Create new content with Hugo:
-
-```bash
-hugo new articles/my-new-article.md
-hugo new talks/my-new-talk.md
-```
-
-Or create files manually inside `content/`.
-
-## Content conventions
-
-### Articles
-
-Stored in `content/articles/`.
-
-Suggested front matter fields:
-
-- `title`
-- `date`
-- `draft`
-- `summary`
-- `tags`
-- `series`
-- `slug`
-
-### Talks
-
-Stored in `content/talks/`.
-
-Suggested additional fields:
-
-- `event`
-- `location`
-- `talk_date`
-- `resources`
-
-### Standalone pages
-
-Stored in `content/pages/`.
-
-For pages like About, Contact, or project information.
-
-## Future migration to Cloudflare Pages
-
-This starter is deliberately host-agnostic:
-
-- content is plain Markdown
-- templates are standard Hugo templates
-- there is no Azure-specific logic in the site itself
-
-If you move later, the main change should be deployment configuration and DNS.
+After the IA is agreed, the content model can be formalised and the templates can be adapted to the final metadata structure and automation workflow.

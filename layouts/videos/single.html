@@ -1,0 +1,85 @@
+{{ define "main" }}
+<article class="section-stack">
+  <section class="video-layout">
+    <div>
+      {{ with .Params.youtube }}
+      <iframe class="video-frame" src="{{ $.Site.Params.youtubePrivacyDomain }}{{ . }}" title="{{ $.Title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      {{ end }}
+      <div class="content-block" style="margin-top: 1rem;">
+        <div class="kicker smallcaps">Video support page</div>
+        <h1 class="page-title">{{ .Title }}</h1>
+        <div class="meta">Published {{ .Date.Format "2 January 2006" }}</div>
+        {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+      </div>
+      {{ if .Content }}
+      <section class="content-block">
+        {{ .Content }}
+      </section>
+      {{ end }}
+      {{ with .Params.references }}
+      <section class="content-block">
+        <h2>References</h2>
+        <ol>
+          {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+        </ol>
+      </section>
+      {{ end }}
+      {{ with .Params.notes }}
+      <section class="content-block">
+        <h2>Notes and clarifications</h2>
+        {{ range . }}<p>{{ . | markdownify }}</p>{{ end }}
+      </section>
+      {{ end }}
+      <section class="content-block">
+        <h2>Errata / updates</h2>
+        {{ with .Params.errata }}
+          <ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+        {{ else }}
+          <p class="empty">No corrections or updates have been recorded for this page yet.</p>
+        {{ end }}
+      </section>
+    </div>
+    <aside class="section-stack">
+      <section class="content-block">
+        <h2>Topics</h2>
+        <div class="chips">
+          {{ range .GetTerms "topics" }}
+            <a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          {{ end }}
+        </div>
+      </section>
+      {{ with .GetTerms "series" }}
+      <section class="content-block">
+        <h2>Series</h2>
+        <ul class="list-clean">
+          {{ range . }}
+            <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+          {{ end }}
+        </ul>
+      </section>
+      {{ end }}
+      <section class="content-block">
+        <h2>Related videos</h2>
+        {{ $current := . }}
+        {{ $related := .Site.RegularPages.Related . }}
+        {{ $relatedVideos := where $related "Section" "videos" }}
+        {{ $relatedVideos = where $relatedVideos "Permalink" "ne" .Permalink }}
+        {{ if gt (len $relatedVideos) 0 }}
+          {{ range first 4 $relatedVideos }}
+            <p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+          {{ end }}
+        {{ else }}
+          {{ range first 4 (where (where .Site.RegularPages.ByDate.Reverse "Section" "videos") "Permalink" "ne" .Permalink) }}
+            <p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+          {{ end }}
+        {{ end }}
+      </section>
+      <section class="content-block">
+        <h2>Explore</h2>
+        <p><a href="{{ "/topics/" | relURL }}">Browse all topics →</a></p>
+        <p><a href="{{ "/recent/" | relURL }}">Recent videos →</a></p>
+      </section>
+    </aside>
+  </section>
+</article>
+{{ end }}

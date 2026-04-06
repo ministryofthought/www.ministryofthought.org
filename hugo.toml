@@ -1,63 +1,58 @@
-baseURL = "/"
+baseURL = "https://www.ministryofthought.org/"
 languageCode = "en-gb"
 title = "Ministry of Thought"
-defaultContentLanguage = "en"
 enableRobotsTXT = true
-summaryLength = 30
+summaryLength = 24
 
 [pagination]
   pagerSize = 10
 
-[permalinks]
-  articles = "/articles/:slug/"
-  talks = "/talks/:slug/"
+[taxonomies]
+  topic = "topics"
+  series = "series"
+
+[params]
+  description = "A structured companion to the videos: references, errata, related topics, and curated pathways through the content."
+  googleSiteSearchBase = "https://www.google.com/search?q=site:ministryofthought.org+"
+  youtubePrivacyDomain = "https://www.youtube-nocookie.com/embed/"
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      unsafe = false
-  [markup.highlight]
-    noClasses = false
+      unsafe = true
 
-[params]
-  siteDescription = "Thoughtful writing, talks, and resources."
-  siteTagline = "Ideas worth returning to."
-  author = ""
-  showReadingTime = true
-  dateFormat = "2 January 2006"
-
-[menu]
-  [[menu.main]]
-    identifier = "home"
-    name = "Home"
-    url = "/"
+[menus]
+  [[menus.main]]
+    name = "Topics"
+    pageRef = "/topics"
     weight = 10
-  [[menu.main]]
-    identifier = "articles"
-    name = "Articles"
-    url = "/articles/"
+  [[menus.main]]
+    name = "Series"
+    pageRef = "/series"
     weight = 20
-  [[menu.main]]
-    identifier = "talks"
-    name = "Talks"
-    url = "/talks/"
+  [[menus.main]]
+    name = "Recent"
+    pageRef = "/recent"
     weight = 30
-  [[menu.main]]
-    identifier = "about"
+  [[menus.main]]
     name = "About"
-    url = "/about/"
+    pageRef = "/about"
     weight = 40
 
-[taxonomies]
-  tag = "tags"
-  series = "series"
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
 
-[outputs]
-  home = ["HTML", "RSS"]
-  section = ["HTML", "RSS"]
-  taxonomy = ["HTML"]
-  term = ["HTML"]
+  [[related.indices]]
+    name = "topics"
+    weight = 100
 
-[caches]
-  [caches.images]
-    dir = ':cacheDir/images'
+  [[related.indices]]
+    name = "series"
+    weight = 60
+
+  [[related.indices]]
+    name = "date"
+    weight = 10
+    pattern = "2006"

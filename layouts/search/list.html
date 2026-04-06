@@ -1,0 +1,66 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="kicker smallcaps">Search</div>
+  <h1 class="page-title">Search the site</h1>
+  <p class="lead">Use the concept search to find pages about a major topic, or send a full-text query to Google with a site: filter.</p>
+</section>
+
+<section class="grid two">
+  <section class="panel">
+    <h2>Search by major concept / topic</h2>
+    <div class="search-box">
+      <input id="topic-search" type="text" placeholder="Type a topic…">
+    </div>
+    <div id="topic-results" class="search-results" style="margin-top: 1rem;"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Full-text search</h2>
+    <form class="google-search-box" method="get" action="https://www.google.com/search">
+      <input name="q" id="google-q" type="text" placeholder="Search page text with Google">
+      <button type="submit">Search with Google</button>
+    </form>
+    <p class="meta" style="margin-top: .75rem;">Tip: Google will search page text; the topic search above is intended for conceptual navigation.</p>
+  </section>
+</section>
+
+{{ $topics := slice }}
+{{ range .Site.Taxonomies.topics.Alphabetical }}
+  {{ $pages := slice }}
+  {{ range .Pages.ByDate.Reverse }}
+    {{ $pages = $pages | append (dict "title" .Title "url" .RelPermalink "summary" (or .Params.summary .Summary)) }}
+  {{ end }}
+  {{ $topics = $topics | append (dict "name" .Page.Title "url" .Page.RelPermalink "pages" $pages) }}
+{{ end }}
+<script>
+  const TOPICS = {{ $topics | jsonify }};
+  const input = document.getElementById('topic-search');
+  const results = document.getElementById('topic-results');
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get('q') || '';
+  input.value = initial;
+  const render = (query) => {
+    const q = query.trim().toLowerCase();
+    const matches = q ? TOPICS.filter(t => t.name.toLowerCase().includes(q)) : TOPICS.slice(0, 10);
+    if (!matches.length) {
+      results.innerHTML = '<p class="empty">No matching topics found.</p>';
+      return;
+    }
+    results.innerHTML = matches.map(topic => `
+      <div class="result content-block">
+        <p><a href="${topic.url}"><strong>${topic.name}</strong></a></p>
+        <div>${topic.pages.slice(0,4).map(p => `<p><a href="${p.url}">${p.title}</a></p>`).join('')}</div>
+      </div>
+    `).join('');
+  };
+  input.addEventListener('input', e => render(e.target.value));
+  render(initial);
+  document.querySelector('.google-search-box')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = document.getElementById('google-q').value.trim();
+    if (q) {
+      window.location.href = `https://www.google.com/search?q=${encodeURIComponent('site:ministryofthought.org ' + q)}`;
+    }
+  });
+</script>
+{{ end }}

@@ -1,55 +1,58 @@
 {{ define "main" }}
-<section class="hero container">
-  <p class="eyebrow">{{ site.Title }}</p>
-  <h1>{{ site.Params.siteTagline }}</h1>
-  <p class="lead">{{ site.Params.siteDescription }}</p>
+<section class="hero">
+  <div class="kicker smallcaps">A structured companion to the videos</div>
+  <h1>References, errata, related topics, and curated pathways through the content.</h1>
+  <p class="lead">Designed for visitors who arrive from a video link, but also for people who want to browse by concept, series, or recent additions.</p>
 </section>
 
-<section class="container section-block">
-  <div class="section-heading">
-    <h2>Featured article</h2>
-    <a href="{{ "/articles/" | relURL }}">View all articles</a>
-  </div>
-  {{ $featured := where site.RegularPages "Params.featured" true }}
-  {{ if gt (len $featured) 0 }}
-    {{ range first 1 (sort $featured "Date" "desc") }}
-      <article class="card">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
-      </article>
-    {{ end }}
-  {{ else }}
-    <p>No featured article yet.</p>
-  {{ end }}
+<section class="panel" style="margin-bottom: 1rem;">
+  <h2>Search by topic or concept</h2>
+  <form class="search-box" action="{{ "/search/" | relURL }}">
+    <input type="text" name="q" placeholder="Problem of evil, Bible translations, Psalm 119…">
+    <button type="submit">Search topics</button>
+  </form>
 </section>
 
-<section class="container section-block grid-two">
-  <div>
-    <div class="section-heading">
-      <h2>Recent articles</h2>
+<section class="grid two">
+  <div class="panel">
+    <h2>Browse topics</h2>
+    <div class="chips">
+      {{ range first 10 .Site.Taxonomies.topics.ByCount }}
+        <a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+      {{ end }}
     </div>
-    {{ range first 5 (where site.RegularPages "Section" "articles") }}
-      <article class="list-item">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+    <p style="margin-top: 1rem;"><a href="{{ "/topics/" | relURL }}">See all topics →</a></p>
+  </div>
+  <div class="panel">
+    <h2>Featured series</h2>
+    <ul class="list-clean">
+      {{ range first 3 .Site.Taxonomies.series.Alphabetical }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}"><strong>{{ .Page.Title }}</strong></a><br>
+          <span class="meta">{{ len .Pages }} videos</span>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<section class="panel" style="margin-top: 1rem;">
+  <h2>Recent videos</h2>
+  <div class="content-list">
+    {{ range first 5 (where .Site.RegularPages.ByDate.Reverse "Section" "videos") }}
+      <article class="inline-video-card">
+        <div>
+          <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+          <div class="meta">{{ .Date.Format "2 January 2006" }}</div>
+          <p>{{ or .Params.summary .Summary }}</p>
+          <div class="chips">
+            {{ range .Params.topics }}<a class="chip" href="{{ "/topics/" | relURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+          </div>
+        </div>
+        <div><a class="button secondary" href="{{ .RelPermalink }}">Open page</a></div>
       </article>
-    {{ else }}
-      <p>No articles yet.</p>
     {{ end }}
   </div>
-  <div>
-    <div class="section-heading">
-      <h2>Recent talks</h2>
-    </div>
-    {{ range first 5 (where site.RegularPages "Section" "talks") }}
-      <article class="list-item">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        {{ with .Params.event }}<p><strong>Event:</strong> {{ . }}</p>{{ end }}
-        {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
-      </article>
-    {{ else }}
-      <p>No talks yet.</p>
-    {{ end }}
-  </div>
+  <p style="margin-top: 1rem;"><a href="{{ "/recent/" | relURL }}">See all recent videos →</a></p>
 </section>
 {{ end }}
