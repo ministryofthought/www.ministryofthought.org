@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="container page-header">
+  <p class="eyebrow">Section</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+</section>
+
+<section class="container listing">
+  {{ range .Paginator.Pages }}
+    <article class="card">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+      <p><a href="{{ .RelPermalink }}">Read more</a></p>
+    </article>
+  {{ else }}
+    <p>No content found.</p>
+  {{ end }}
+
+  {{ template "_internal/pagination.html" . }}
+</section>
+{{ end }}

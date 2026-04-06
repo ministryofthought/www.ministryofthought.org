@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="{{ "/" | relURL }}">{{ site.Title }}</a>
+      {{ with site.Params.siteTagline }}
+        <p class="tagline">{{ . }}</p>
+      {{ end }}
+    </div>
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul>
+        {{ range site.Menus.main }}
+          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+  </div>
+</header>

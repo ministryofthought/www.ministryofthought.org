@@ -1,0 +1,13 @@
+<div class="content-meta">
+  {{ with .Date }}
+    <p><strong>Published:</strong> {{ .Format (site.Params.dateFormat | default "2 January 2006") }}</p>
+  {{ end }}
+  {{ if and site.Params.showReadingTime .ReadingTime }}
+    <p><strong>Reading time:</strong> {{ .ReadingTime }} min</p>
+  {{ end }}
+  {{ with .Params.tags }}
+    <p><strong>Tags:</strong>
+      {{ range $index, $tag := . }}{{ if $index }}, {{ end }}<a href="{{ (printf "/tags/%s/" ($tag | urlize)) | relURL }}">{{ $tag }}</a>{{ end }}
+    </p>
+  {{ end }}
+</div>

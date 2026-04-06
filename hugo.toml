@@ -1,0 +1,63 @@
+baseURL = "/"
+languageCode = "en-gb"
+title = "Ministry of Thought"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+summaryLength = 30
+
+[pagination]
+  pagerSize = 10
+
+[permalinks]
+  articles = "/articles/:slug/"
+  talks = "/talks/:slug/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.highlight]
+    noClasses = false
+
+[params]
+  siteDescription = "Thoughtful writing, talks, and resources."
+  siteTagline = "Ideas worth returning to."
+  author = ""
+  showReadingTime = true
+  dateFormat = "2 January 2006"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "articles"
+    name = "Articles"
+    url = "/articles/"
+    weight = 20
+  [[menu.main]]
+    identifier = "talks"
+    name = "Talks"
+    url = "/talks/"
+    weight = 30
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
