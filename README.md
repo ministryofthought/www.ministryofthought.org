@@ -38,3 +38,9 @@ The sample pages use Woodside Church videos as placeholder embeds, so the layout
 ## Next likely step
 
 After the IA is agreed, the content model can be formalised and the templates can be adapted to the final metadata structure and automation workflow.
+
+## AI Guidance
+
+If you are an AI agent working on this repository, you must read:
+
+docs/ai-context.md
