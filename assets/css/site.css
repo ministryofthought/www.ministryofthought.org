@@ -88,6 +88,13 @@ main { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1rem 3rem; }
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem;
 }
 .content-block h2 { margin-top: 0; }
+.video-main { margin-top: 1rem; }
+.video-main-header > :last-child,
+.video-main-section > :last-child { margin-bottom: 0; }
+.video-main-section {
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+}
+.video-main-section h2 { margin-top: 0; }
 .content-list article + article { margin-top: .9rem; padding-top: .9rem; border-top: 1px solid var(--border); }
 .topic-columns {
   columns: 3 260px; column-gap: 1rem;

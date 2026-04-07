@@ -5,39 +5,41 @@
       {{ with .Params.youtube }}
       <iframe class="video-frame" src="{{ $.Site.Params.youtubePrivacyDomain }}{{ . }}" title="{{ $.Title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       {{ end }}
-      <div class="content-block" style="margin-top: 1rem;">
-        <div class="kicker smallcaps">Video support page</div>
-        <h1 class="page-title">{{ .Title }}</h1>
-        <div class="meta">Published {{ .Date.Format "2 January 2006" }}</div>
-        {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
-      </div>
-      {{ if .Content }}
-      <section class="content-block">
-        {{ .Content }}
-      </section>
-      {{ end }}
-      {{ with .Params.references }}
-      <section class="content-block">
-        <h2>References</h2>
-        <ol>
-          {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-        </ol>
-      </section>
-      {{ end }}
-      {{ with .Params.notes }}
-      <section class="content-block">
-        <h2>Notes and clarifications</h2>
-        {{ range . }}<p>{{ . | markdownify }}</p>{{ end }}
-      </section>
-      {{ end }}
-      <section class="content-block">
-        <h2>Errata / updates</h2>
-        {{ with .Params.errata }}
-          <ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
-        {{ else }}
-          <p class="empty">No corrections or updates have been recorded for this page yet.</p>
+      <div class="content-block video-main">
+        <header class="video-main-header">
+          <div class="kicker smallcaps">Video support page</div>
+          <h1 class="page-title">{{ .Title }}</h1>
+          <div class="meta">Published {{ .Date.Format "2 January 2006" }}</div>
+          {{ with .Params.summary }}<p class="lead">{{ . }}</p>{{ end }}
+        </header>
+        {{ if .Content }}
+        <section class="video-main-section">
+          {{ .Content }}
+        </section>
         {{ end }}
-      </section>
+        {{ with .Params.references }}
+        <section class="video-main-section">
+          <h2>References</h2>
+          <ol>
+            {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+          </ol>
+        </section>
+        {{ end }}
+        {{ with .Params.notes }}
+        <section class="video-main-section">
+          <h2>Notes and clarifications</h2>
+          {{ range . }}<p>{{ . | markdownify }}</p>{{ end }}
+        </section>
+        {{ end }}
+        <section class="video-main-section">
+          <h2>Errata / updates</h2>
+          {{ with .Params.errata }}
+            <ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+          {{ else }}
+            <p class="empty">No corrections or updates have been recorded for this page yet.</p>
+          {{ end }}
+        </section>
+      </div>
     </div>
     <aside class="section-stack">
       <section class="content-block">

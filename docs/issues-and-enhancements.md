@@ -20,6 +20,7 @@ or navigates to the search page to enter their search.
 
 ## R7. Section display on video pages
 
+Status: Fixed
 Severity: Low
 
 On the page for a video - e.g. /videos/we-believe-resurrection/ - the sections
