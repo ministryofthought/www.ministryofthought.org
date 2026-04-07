@@ -77,35 +77,23 @@ Relevant files:
 
 - `layouts/taxonomy/taxonomy.html`
 
-## R4. Several user-facing strings contain broken character encoding
+## R4. Encoding issue report withdrawn after browser verification
 
-Severity: Medium
+Status: Closed as false positive
 
-There are multiple visible strings in templates and documentation that appear to
-have mojibake, for example:
+During the initial review, several characters appeared as mojibake in terminal
+output, including separators, arrows, ellipses, and the mobile navigation icon.
 
-- `Â·` where a middle dot should appear
-- `â˜°` where the mobile menu icon should appear
-- `â€¦` where an ellipsis should appear
-- `â†’` where a right arrow should appear
+After deployment to Azure and direct browser inspection, those strings were
+confirmed to render correctly. The browser tab title was also checked and found
+to be correct.
 
-These are not just source-formatting issues. They would be shown directly to
-site visitors in titles, labels, placeholders, and navigation text.
+Conclusion:
 
-Why this matters:
-
-- It visibly reduces quality and credibility.
-- It makes key navigation elements look broken.
-- It suggests there may be text encoding inconsistencies in the editing
-  workflow.
-
-Relevant files:
-
-- `layouts/partials/head.html`
-- `layouts/partials/header.html`
-- `layouts/partials/footer.html`
-- `layouts/index.html`
-- `README.md`
+- This was most likely caused by terminal or shell encoding during inspection.
+- It does not currently appear to be a real site defect.
+- No code change is required for this item unless the issue can be reproduced in
+  an actual browser.
 
 ## R5. Mobile navigation depends too heavily on JavaScript and lacks state
 
@@ -134,5 +122,5 @@ Relevant files:
 
 - The site built successfully with `hugo` during this review.
 - No immediate deployment-breaking template errors were found.
-- The main concerns are functional correctness, safety defaults, semantics, and
-  accessibility.
+- The main open concerns are functional correctness, safety defaults,
+  semantics, and accessibility.
