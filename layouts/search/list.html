@@ -35,13 +35,26 @@
   (function () {
     const input = document.getElementById('topic-search');
     const items = Array.from(document.querySelectorAll('#topic-results li'));
-    if (input) {
-      input.addEventListener('input', function () {
-        const q = input.value.trim().toLowerCase();
-        items.forEach(function (item) {
-          item.style.display = !q || item.dataset.topic.includes(q) ? '' : 'none';
-        });
+    if (!input) {
+      return;
+    }
+
+    function applyTopicFilter(value) {
+      const q = (value || '').trim().toLowerCase();
+      items.forEach(function (item) {
+        item.style.display = !q || item.dataset.topic.includes(q) ? '' : 'none';
       });
+    }
+
+    input.addEventListener('input', function () {
+      applyTopicFilter(input.value);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = (params.get('q') || '').trim();
+    if (initialQuery) {
+      input.value = initialQuery;
+      applyTopicFilter(initialQuery);
     }
   })();
 
