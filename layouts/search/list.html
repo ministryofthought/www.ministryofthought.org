@@ -9,6 +9,10 @@
   <section class="content-block">
     <h2>Search by major concept / topic</h2>
     <input id="topic-search" type="text" placeholder="Search topics..." aria-label="Search topics">
+    <p id="topic-no-results" class="empty search-empty" hidden>
+      No matching topics found.
+      <a id="topic-fallback-link" class="button secondary" href="https://www.google.com/search">Search this phrase across the site instead</a>
+    </p>
     <ul id="topic-results" class="list-clean taxonomy-list" style="margin-top:1rem;">
       {{ range .Site.Taxonomies.topics.Alphabetical }}
         <li data-topic="{{ .Page.LinkTitle | lower }}">
@@ -41,9 +45,34 @@
 
     function applyTopicFilter(value) {
       const q = (value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
       items.forEach(function (item) {
-        item.style.display = !q || item.dataset.topic.includes(q) ? '' : 'none';
+        const isVisible = !q || item.dataset.topic.includes(q);
+        item.style.display = isVisible ? '' : 'none';
+        if (isVisible) {
+          visibleCount += 1;
+        }
       });
+
+      const noResults = document.getElementById('topic-no-results');
+      const fallbackLink = document.getElementById('topic-fallback-link');
+      const googleInput = document.getElementById('google-site-query');
+      const rawQuery = (value || '').trim();
+      const site = 'site:{{ .Site.BaseURL | replaceRE "https?://" "" | replaceRE "/$" "" }}';
+      const fallbackQuery = rawQuery ? (site + ' ' + rawQuery) : site;
+
+      if (googleInput && rawQuery && !googleInput.value.trim()) {
+        googleInput.value = rawQuery;
+      }
+
+      if (fallbackLink) {
+        fallbackLink.href = 'https://www.google.com/search?q=' + encodeURIComponent(fallbackQuery);
+      }
+
+      if (noResults) {
+        noResults.hidden = visibleCount > 0 || !rawQuery;
+      }
     }
 
     input.addEventListener('input', function () {
@@ -54,6 +83,10 @@
     const initialQuery = (params.get('q') || '').trim();
     if (initialQuery) {
       input.value = initialQuery;
+      const googleInput = document.getElementById('google-site-query');
+      if (googleInput) {
+        googleInput.value = initialQuery;
+      }
       applyTopicFilter(initialQuery);
     }
   })();

@@ -108,6 +108,10 @@ main { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1rem 3rem; }
 .inline-video-card { display: grid; grid-template-columns: 1fr auto; gap: .8rem; }
 .search-results .result + .result { margin-top: .8rem; }
 .empty { color: var(--muted); font-style: italic; }
+.search-empty {
+  display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; margin: 1rem 0 0;
+}
+.search-empty[hidden] { display: none !important; }
 @media (max-width: 860px) {
   .grid.two, .video-layout { grid-template-columns: 1fr; }
   .site-nav {
