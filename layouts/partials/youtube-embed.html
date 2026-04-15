@@ -1,0 +1,12 @@
+{{- $src := "" -}}
+{{- $baseURL := .Site.Params.youtubePrivacyDomain | default "https://www.youtube-nocookie.com/embed/" -}}
+{{- with .Params.youtube -}}
+  {{- $src = printf "%s%s" $baseURL . -}}
+{{- else -}}
+  {{- with .Params.youtubePlaylist -}}
+    {{- $src = printf "%svideoseries?list=%s" $baseURL (. | urlquery) -}}
+  {{- end -}}
+{{- end -}}
+{{- with $src -}}
+<iframe class="video-frame" src="{{ . }}" title="{{ $.Title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{- end -}}

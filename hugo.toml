@@ -12,6 +12,10 @@ summaryLength = 24
   series = "series"
 
 [params]
+  [params.bible]
+    defaultVersion = "KJV"
+    passageBaseURL = "https://www.biblegateway.com/passage/"
+
   description = "A structured companion to videos and articles: references, errata, related topics, and curated pathways through the content."
   googleSiteSearchBase = "https://www.google.com/search?q=site:ministryofthought.org+"
   primaryContentSections = ["articles", "videos"]

@@ -36,6 +36,40 @@ The sample pages use Woodside Church videos as placeholder embeds, so the layout
 - The search page includes a small client-side topic search built from Hugo taxonomies.
 - The full-text search button sends the user to Google with a `site:ministryofthought.org` query.
 
+## Bible references
+
+Use the `bible` shortcode for inline passage links:
+
+```markdown
+{{< bible "John 3:16" >}}
+```
+
+Use the paired `biblequote` shortcode for quoted passages:
+
+```markdown
+{{< biblequote ref="John 3:16" >}}
+For God so loved the world...
+{{< /biblequote >}}
+```
+
+Both shortcodes use the default Bible version and passage URL configured in `hugo.toml`.
+
+## YouTube embeds
+
+Video pages can embed either a single YouTube video:
+
+```toml
+youtube = "VIDEO_ID"
+```
+
+or a YouTube playlist:
+
+```toml
+youtubePlaylist = "PLAYLIST_ID"
+```
+
+If both are present, the single video is used.
+
 ## Next likely step
 
 After the IA is agreed, the content model can be formalised and the templates can be adapted to the final metadata structure and automation workflow.

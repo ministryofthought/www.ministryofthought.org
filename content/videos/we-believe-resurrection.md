@@ -10,11 +10,19 @@ series = ["We Believe"]
 
 A future production page might include a short introductory paragraph here, followed by extended notes, reference links, or a brief explanation of why this video belongs in a given series.
 
+Here is an inline example for a longer passage: {{< bible "1 Corinthians 15:3-8" >}}.
+
+{{< biblequote ref="1 Corinthians 15:3-4" >}}
+For I delivered unto you first of all that which I also received, how that Christ died for our sins according to the scriptures;
+
+And that he was buried, and that he rose again the third day according to the scriptures:
+{{< /biblequote >}}
+
 ## References
 
-1. 1 Corinthians 15
-2. Luke 24
-3. Acts 2:24-32
+1. {{< bible "1 Corinthians 15" >}}
+2. {{< bible "Luke 24" >}}
+3. {{< bible "Acts 2:24-32" >}}
 
 ## Notes and clarifications
 

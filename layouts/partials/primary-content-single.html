@@ -1,9 +1,7 @@
 <article class="section-stack">
   <section class="video-layout">
     <div>
-      {{ if and .Params.youtube .Site.Params.youtubePrivacyDomain }}
-      <iframe class="video-frame" src="{{ .Site.Params.youtubePrivacyDomain }}{{ .Params.youtube }}" title="{{ .Title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      {{ end }}
+      {{ partial "youtube-embed.html" . }}
       <div class="content-block video-main">
         <header class="video-main-header">
           <div class="kicker smallcaps">{{ partial "content-type-label.html" . }}</div>

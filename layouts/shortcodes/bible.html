@@ -1,0 +1,6 @@
+{{- $ref := .Get 0 | default (.Get "ref") -}}
+{{- $label := .Get "label" | default $ref -}}
+{{- $version := .Get "version" | default site.Params.bible.defaultVersion | default "KJV" -}}
+{{- $baseURL := site.Params.bible.passageBaseURL | default "https://www.biblegateway.com/passage/" -}}
+{{- $href := printf "%s?search=%s&version=%s" $baseURL ($ref | urlquery) ($version | urlquery) -}}
+<a class="bible-ref" href="{{ $href }}" target="_blank" rel="noopener noreferrer" title="Open Bible passage in a new window" data-bible-ref="{{ $ref }}" data-bible-version="{{ $version }}">{{ $label }}</a>
