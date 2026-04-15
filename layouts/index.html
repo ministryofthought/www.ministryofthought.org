@@ -40,7 +40,7 @@
   <h2>Recent content</h2>
   <div class="content-list">
     {{ range first 5 (partial "primary-content-pages.html" .) }}
-      {{ partial "primary-content-card.html" (dict "page" . "cardClass" "inline-video-card" "showButton" true) }}
+      {{ partial "primary-content-card.html" (dict "page" .) }}
     {{ end }}
   </div>
   <p style="margin-top: 1rem;"><a href="{{ "/recent/" | relURL }}">See all recent content -></a></p>
