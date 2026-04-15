@@ -5,8 +5,9 @@
     {{ with .Content }}<div class="lead">{{ . }}</div>{{ end }}
   </section>
   <section class="panel">
+    {{ $paginator := .Paginate (.Pages.ByDate.Reverse) }}
     <div class="content-list">
-      {{ range .Pages.ByDate.Reverse }}
+      {{ range $paginator.Pages }}
         <article>
           <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
           <div class="meta">{{ partial "content-type-label.html" . }} - {{ .Date.Format "2 January 2006" }}</div>
@@ -14,5 +15,6 @@
         </article>
       {{ end }}
     </div>
+    {{ partial "pagination.html" . }}
   </section>
 {{ end }}

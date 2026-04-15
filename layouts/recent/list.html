@@ -5,10 +5,12 @@
   {{ with .Params.description }}<p class="lead">{{ . }}</p>{{ end }}
 </section>
 <section class="panel">
+  {{ $paginator := .Paginate (partial "primary-content-pages.html" .) }}
   <div class="content-list">
-    {{ range partial "primary-content-pages.html" . }}
+    {{ range $paginator.Pages }}
       {{ partial "primary-content-card.html" (dict "page" .) }}
     {{ end }}
   </div>
+  {{ partial "pagination.html" . }}
 </section>
 {{ end }}
