@@ -6,15 +6,20 @@ summary = "A fourth sample page broadens the test content and helps the site fee
 youtube = "OUnCmrZLZrQ"
 topics = ["Community", "Friendship", "Christian Life"]
 series = ["For the Love Of"]
-references = [
-  "John 15:12-15",
-  "Proverbs 17:17",
-  "Ecclesiastes 4:9-12"
-]
-notes = [
-  "Use sample pages like this to validate how mixed content will look once the library reaches 50–100 items."
-]
-errata = []
 +++
 
 Because most visitors are expected to arrive from a YouTube link, the support page should quickly orient them, then give them clear routes to nearby topics and related videos.
+
+## References
+
+1. John 15:12-15
+2. Proverbs 17:17
+3. Ecclesiastes 4:9-12
+
+## Notes and clarifications
+
+Use sample pages like this to validate how mixed content will look once the library reaches 50-100 items.
+
+## Errata / updates
+
+No corrections or updates have been recorded for this page yet.

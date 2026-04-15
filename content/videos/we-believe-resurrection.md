@@ -6,18 +6,22 @@ summary = "A second sample page demonstrating that a video can belong to more th
 youtube = "p-_h4MuGKTg"
 topics = ["Introduction to Christianity", "Resurrection", "Jesus", "Apologetics"]
 series = ["We Believe"]
-references = [
-  "1 Corinthians 15",
-  "Luke 24",
-  "Acts 2:24-32"
-]
-notes = [
-  "This placeholder page exists to exercise the taxonomy structure.",
-  "It deliberately overlaps with several topics so the discovery system can be tested."
-]
-errata = [
-  "Sample correction entry: update the wording of one reference note once the real page is drafted."
-]
 +++
 
 A future production page might include a short introductory paragraph here, followed by extended notes, reference links, or a brief explanation of why this video belongs in a given series.
+
+## References
+
+1. 1 Corinthians 15
+2. Luke 24
+3. Acts 2:24-32
+
+## Notes and clarifications
+
+This placeholder page exists to exercise the taxonomy structure.
+
+It deliberately overlaps with several topics so the discovery system can be tested.
+
+## Errata / updates
+
+- Sample correction entry: update the wording of one reference note once the real page is drafted.

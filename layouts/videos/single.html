@@ -17,28 +17,6 @@
           {{ .Content }}
         </section>
         {{ end }}
-        {{ with .Params.references }}
-        <section class="video-main-section">
-          <h2>References</h2>
-          <ol>
-            {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-          </ol>
-        </section>
-        {{ end }}
-        {{ with .Params.notes }}
-        <section class="video-main-section">
-          <h2>Notes and clarifications</h2>
-          {{ range . }}<p>{{ . | markdownify }}</p>{{ end }}
-        </section>
-        {{ end }}
-        <section class="video-main-section">
-          <h2>Errata / updates</h2>
-          {{ with .Params.errata }}
-            <ul>{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
-          {{ else }}
-            <p class="empty">No corrections or updates have been recorded for this page yet.</p>
-          {{ end }}
-        </section>
       </div>
     </div>
     <aside class="section-stack">
