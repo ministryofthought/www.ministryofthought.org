@@ -10,6 +10,20 @@ series = ["For the Love Of"]
 
 Because most visitors are expected to arrive from a YouTube link, the support page should quickly orient them, then give them clear routes to nearby topics and related videos.
 
+# Heading 1
+
+Some content
+
+## Heading 2
+
+Some more content.
+
+And some more.
+
+# Heading 1 again.
+
+## Heading 2 again.
+
 ## References
 
 1. John 15:12-15
