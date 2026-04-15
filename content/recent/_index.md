@@ -1,6 +1,6 @@
 +++
-title = "Recent videos"
-description = "A straightforward chronological browse through the latest video support pages."
+title = "Recent content"
+description = "A straightforward chronological browse through the latest videos and articles."
 url = "/recent/"
 layout = "recent"
 +++

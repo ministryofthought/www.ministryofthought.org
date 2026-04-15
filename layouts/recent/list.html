@@ -6,15 +6,8 @@
 </section>
 <section class="panel">
   <div class="content-list">
-    {{ range (where .Site.RegularPages.ByDate.Reverse "Section" "videos") }}
-      <article>
-        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
-        <div class="meta">{{ .Date.Format "2 January 2006" }}</div>
-        <p>{{ or .Params.summary .Summary }}</p>
-        <div class="chips">
-          {{ range .Params.topics }}<a class="chip" href="{{ "/topics/" | relURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
-        </div>
-      </article>
+    {{ range partial "primary-content-pages.html" . }}
+      {{ partial "primary-content-card.html" (dict "page" .) }}
     {{ end }}
   </div>
 </section>

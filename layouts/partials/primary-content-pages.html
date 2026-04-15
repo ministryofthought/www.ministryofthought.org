@@ -1,0 +1,2 @@
+{{- $sections := .Site.Params.primaryContentSections | default (slice "videos") -}}
+{{- return (where .Site.RegularPages.ByDate.Reverse "Section" "in" $sections) -}}

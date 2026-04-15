@@ -1,0 +1,5 @@
+{{- with .Params.contentTypeLabel -}}
+  {{- . | upper -}}
+{{- else -}}
+  {{- .Section | singularize | upper -}}
+{{- end -}}

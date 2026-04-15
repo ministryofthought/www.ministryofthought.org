@@ -3,10 +3,10 @@
 This is a custom Hugo starter site implementing the wireframe direction discussed in chat:
 
 - compact, content-first layout
-- video support pages as the primary content type
+- videos and articles as the primary content types
 - topic pages for conceptual browsing
 - series pages for curated pathways
-- recent videos page
+- recent content page
 - dual search model: concept/topic search on-site and Google full-text search
 
 ## Run locally
@@ -17,7 +17,8 @@ hugo server
 
 ## Key sections
 
-- `content/videos/` — video support pages
+- `content/videos/` — video pages
+- `content/articles/` — article pages
 - `content/topics/` — taxonomy landing page
 - `content/series/` — taxonomy landing page
 - `content/search/` — search page

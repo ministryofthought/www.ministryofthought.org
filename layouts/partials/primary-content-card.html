@@ -1,0 +1,13 @@
+<article{{ with .cardClass }} class="{{ . }}"{{ end }}>
+  <div>
+    <a href="{{ .page.RelPermalink }}"><strong>{{ .page.Title }}</strong></a>
+    <div class="meta">{{ partial "content-type-label.html" .page }} - {{ .page.Date.Format "2 January 2006" }}</div>
+    <p>{{ or .page.Params.summary .page.Summary }}</p>
+    <div class="chips">
+      {{ range .page.Params.topics }}<a class="chip" href="{{ "/topics/" | relURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+    </div>
+  </div>
+  {{ if .showButton }}
+    <div><a class="button secondary" href="{{ .page.RelPermalink }}">Open page</a></div>
+  {{ end }}
+</article>

@@ -12,8 +12,9 @@ summaryLength = 24
   series = "series"
 
 [params]
-  description = "A structured companion to the videos: references, errata, related topics, and curated pathways through the content."
+  description = "A structured companion to videos and articles: references, errata, related topics, and curated pathways through the content."
   googleSiteSearchBase = "https://www.google.com/search?q=site:ministryofthought.org+"
+  primaryContentSections = ["articles", "videos"]
   youtubePrivacyDomain = "https://www.youtube-nocookie.com/embed/"
 
 [markup]

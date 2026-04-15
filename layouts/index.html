@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="hero">
-  <div class="kicker smallcaps">A structured companion to the videos</div>
+  <div class="kicker smallcaps">A structured companion to the content</div>
   <h1>References, errata, related topics, and curated pathways through the content.</h1>
   <p class="lead">Designed for visitors who arrive from a video link, but also for people who want to browse by concept, series, or recent additions.</p>
 </section>
@@ -8,7 +8,7 @@
 <section class="panel" style="margin-bottom: 1rem;">
   <h2>Search by topic or concept</h2>
   <form class="search-box" action="{{ "/search/" | relURL }}">
-    <input type="text" name="q" placeholder="Problem of evil, Bible translations, Psalm 119…">
+    <input type="text" name="q" placeholder="Problem of evil, Bible translations, Psalm 119...">
     <button type="submit">Search topics</button>
   </form>
 </section>
@@ -21,7 +21,7 @@
         <a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
       {{ end }}
     </div>
-    <p style="margin-top: 1rem;"><a href="{{ "/topics/" | relURL }}">See all topics →</a></p>
+    <p style="margin-top: 1rem;"><a href="{{ "/topics/" | relURL }}">See all topics -></a></p>
   </div>
   <div class="panel">
     <h2>Featured series</h2>
@@ -29,7 +29,7 @@
       {{ range first 3 .Site.Taxonomies.series.Alphabetical }}
         <li>
           <a href="{{ .Page.RelPermalink }}"><strong>{{ .Page.Title }}</strong></a><br>
-          <span class="meta">{{ len .Pages }} videos</span>
+          <span class="meta">{{ len .Pages }} pages</span>
         </li>
       {{ end }}
     </ul>
@@ -37,22 +37,12 @@
 </section>
 
 <section class="panel" style="margin-top: 1rem;">
-  <h2>Recent videos</h2>
+  <h2>Recent content</h2>
   <div class="content-list">
-    {{ range first 5 (where .Site.RegularPages.ByDate.Reverse "Section" "videos") }}
-      <article class="inline-video-card">
-        <div>
-          <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
-          <div class="meta">{{ .Date.Format "2 January 2006" }}</div>
-          <p>{{ or .Params.summary .Summary }}</p>
-          <div class="chips">
-            {{ range .Params.topics }}<a class="chip" href="{{ "/topics/" | relURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
-          </div>
-        </div>
-        <div><a class="button secondary" href="{{ .RelPermalink }}">Open page</a></div>
-      </article>
+    {{ range first 5 (partial "primary-content-pages.html" .) }}
+      {{ partial "primary-content-card.html" (dict "page" . "cardClass" "inline-video-card" "showButton" true) }}
     {{ end }}
   </div>
-  <p style="margin-top: 1rem;"><a href="{{ "/recent/" | relURL }}">See all recent videos →</a></p>
+  <p style="margin-top: 1rem;"><a href="{{ "/recent/" | relURL }}">See all recent content -></a></p>
 </section>
 {{ end }}
