@@ -18,7 +18,7 @@ summaryLength = 24
   youtubePrivacyDomain = "https://www.youtube-nocookie.com/embed/"
 
   [params.bible]
-    defaultVersion = "KJV"
+    defaultVersion = "ESV"
     passageBaseURL = "https://www.biblegateway.com/passage/"
 
 [markup]
