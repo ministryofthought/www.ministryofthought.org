@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section class="hero">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="lead">{{ . }}</div>{{ end }}
+</section>
+<section class="panel">
+  {{ $paginator := .Paginate .RegularPages.ByTitle }}
+  <div class="content-list">
+    {{ range $paginator.Pages }}
+    <article>
+      <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+      <div class="meta">{{ .Params.resourceKind }}{{ with .Params.bibliography.authors }} · {{ delimit . "; " }}{{ end }}{{ with .Params.bibliography.year }} · {{ . }}{{ end }}</div>
+      {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+    </article>
+    {{ else }}<p class="empty">No resources have been added yet.</p>{{ end }}
+  </div>
+  {{ partial "pagination.html" . }}
+</section>
+{{ end }}

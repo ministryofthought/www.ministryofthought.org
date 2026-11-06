@@ -1,6 +1,6 @@
 +++
 title = "Psalm 119:1-8"
-date = 2026-11-06T09:00:00Z
+date = 2026-11-06T08:00:00Z
 description = "Psalm 119:1-8."
 summary = "A study on the first stanza of Psalm 119: loving the Word of God."
 youtubePlaylist = "PLZ3iRMLYFlHu8PlY0J-G2B9Pyp59S0pLZ"
@@ -15,6 +15,7 @@ Word of God.
 ## References
 
 1. {{< bible "Psalm 119:1-8" >}}
+2. {{< resource "motyer-2016-psalms-by-the-day" >}}
 
 
 ## Notes and clarifications

@@ -1,0 +1,8 @@
+{{- $path := .Get "ref" | default (.Get 0) -}}
+{{- $page := site.GetPage (printf "/resources/%s" $path) -}}
+{{- if and $page (eq $page.Section "resources") (eq $page.Kind "page") -}}
+  {{- $label := .Get "label" -}}
+  <a class="resource-ref" href="{{ $page.RelPermalink }}">{{ if $label }}{{ $label }}{{ else }}{{ partial "resource-citation.html" $page }}{{ end }}</a>{{ with .Get "pages" }}, pp. {{ . }}{{ end }}
+{{- else -}}
+  {{- errorf "Unknown resource %q at %s" $path .Position -}}
+{{- end -}}

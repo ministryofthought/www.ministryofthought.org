@@ -1,0 +1,8 @@
+{{- with .Params.bibliography -}}
+  {{- with .authors }}{{ delimit . "; " }}. {{ end -}}
+  {{- with .year }}({{ . }}). {{ end -}}
+{{- end -}}
+<cite>{{ .Title }}{{ with .Params.bibliography.subtitle }}: {{ . }}{{ end }}</cite>.
+{{- with .Params.bibliography -}}
+  {{- with .edition }} {{ . }}.{{ end -}}
+{{- end -}}

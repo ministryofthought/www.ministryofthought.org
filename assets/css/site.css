@@ -70,6 +70,14 @@ main { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1rem 3rem; }
 }
 .card h3, .panel h2, .panel h3 { margin-top: 0; }
 .meta { color: var(--muted); font-size: .95rem; }
+.resource-subtitle { font-size: 1.3rem; color: var(--muted); margin: .5rem 0; }
+.resource-cover { margin: 0; }
+.resource-cover img { width: 100%; max-width: 240px; height: auto; margin: 0 auto; }
+.resource-cover figcaption { margin-top: .75rem; }
+.resource-details { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .35rem 1rem; }
+.resource-details dt { font-weight: 600; }
+.resource-details dd { margin: 0; overflow-wrap: anywhere; }
+.resource-layout > * { min-width: 0; }
 .chips { display: flex; gap: .5rem; flex-wrap: wrap; }
 .chip {
   display: inline-flex; align-items: center; padding: .28rem .6rem; border-radius: 999px;

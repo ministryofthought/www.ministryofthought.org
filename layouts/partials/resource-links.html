@@ -1,0 +1,10 @@
+{{ with .links }}
+<section class="content-block">
+  <h2>{{ $.title }}</h2>
+  <ul class="list-clean">
+    {{ range . }}
+    <li><a href="{{ .url }}" rel="external">{{ .label }}</a>{{ with .note }}<div class="meta">{{ . }}</div>{{ end }}</li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

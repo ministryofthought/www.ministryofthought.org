@@ -1,0 +1,70 @@
+{{ define "main" }}
+<article>
+  <header class="hero">
+    <p><a href="{{ "/resources/" | relURL }}">Resources</a>{{ with .Params.resourceKind }} / {{ . }}{{ end }}</p>
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Params.bibliography.subtitle }}<p class="resource-subtitle">{{ . }}</p>{{ end }}
+    {{ with .Params.bibliography.authors }}<p>{{ delimit . "; " }}</p>{{ end }}
+    {{ with .Params.description }}<p class="lead">{{ . }}</p>{{ end }}
+  </header>
+  <div class="video-layout resource-layout">
+    <div class="section-stack">
+      <section class="content-block">
+        <h2>Reference</h2>
+        <dl class="resource-details">
+          {{ with .Params.bibliography.authors }}<dt>Author</dt><dd>{{ delimit . "; " }}</dd>{{ end }}
+          <dt>Title</dt><dd>{{ .Title }}{{ with .Params.bibliography.subtitle }}: {{ . }}{{ end }}</dd>
+          {{ with .Params.bibliography }}
+          {{ with .year }}<dt>Year</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .publisher }}<dt>Publisher</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .place }}<dt>Place</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .edition }}<dt>Edition</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .isbn }}<dt>ISBN</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .doi }}<dt>DOI</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .format }}<dt>Format</dt><dd>{{ . }}</dd>{{ end }}
+          {{ with .pages }}<dt>Pages</dt><dd>{{ . }}</dd>{{ end }}
+          {{ end }}
+        </dl>
+      </section>
+      {{ with .Content }}<section class="content-block video-main-section">{{ . }}</section>{{ end }}
+      {{ with .GetTerms "topics" }}
+      <section class="content-block">
+        <h2>Topics</h2>
+        <div class="chips">{{ range . }}<a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div>
+      </section>
+      {{ end }}
+    </div>
+    <aside class="section-stack" aria-label="Resource image and links">
+      {{ with .Params.cover }}
+      <section class="content-block">
+        <figure class="resource-cover">
+          {{ $src := .src | relURL }}
+          {{ with $.Resources.Get .src }}{{ $src = .RelPermalink }}{{ end }}
+          <img src="{{ $src }}" alt="{{ .alt }}" loading="lazy">
+          {{ with .credit }}<figcaption class="meta">{{ if $.Params.cover.source }}<a href="{{ $.Params.cover.source }}">{{ . }}</a>{{ else }}{{ . }}{{ end }}</figcaption>{{ end }}
+        </figure>
+      </section>
+      {{ end }}
+      <section class="content-block">
+        <h2>Related content</h2>
+        {{ $references := slice }}
+        {{ $href := printf `href="%s"` .RelPermalink }}
+        {{ range .Site.RegularPages.ByTitle }}
+          {{ if and (ne .RelPermalink $.RelPermalink) (strings.Contains .Content $href) }}
+            {{ $references = $references | append . }}
+          {{ end }}
+        {{ end }}
+        {{ with $references }}
+        <ul class="list-clean">
+          {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+        </ul>
+        {{ else }}
+        <p class="empty">No published pages reference this resource yet.</p>
+        {{ end }}
+      </section>
+      {{ partial "resource-links.html" (dict "title" "Buy a copy" "links" .Params.purchaseLinks) }}
+      {{ partial "resource-links.html" (dict "title" "Read online" "links" .Params.onlineLinks) }}
+    </aside>
+  </div>
+</article>
+{{ end }}
