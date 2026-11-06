@@ -9,6 +9,8 @@ series = ["We Believe"]
 
 This is placeholder article content for testing the article layout.
 
+This is an extra line to test republishing.
+
 The page should behave like a video page in the wider site structure, but without an embedded video at the top. It belongs to the same topics and series as related video content, so it should appear in recent content, topic pages, series pages, and related content lists.
 
 The inline Bible reference shorthand can point readers to a passage like {{< bible "Deuteronomy 6:4" >}} without writing the full URL in the markdown.
