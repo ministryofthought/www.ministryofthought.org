@@ -1,5 +1,5 @@
 +++
-title = "Psalm 119:1-8"
+title = "Serious about the Word: Psalm 119:1-8"
 date = 2026-11-06T08:00:00Z
 description = "Psalm 119:1-8."
 summary = "A study on the first stanza of Psalm 119: loving the Word of God."

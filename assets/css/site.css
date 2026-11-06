@@ -96,7 +96,7 @@ main { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1rem 3rem; }
   background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem;
 }
 .content-block h2 { margin-top: 0; }
-.video-main { margin-top: 1rem; }
+.video-frame + .video-main { margin-top: 1rem; }
 .video-main-header > :last-child,
 .video-main-section > :last-child { margin-bottom: 0; }
 .video-main-section {
